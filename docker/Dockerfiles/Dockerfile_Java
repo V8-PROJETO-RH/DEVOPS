@@ -1,16 +1,11 @@
-# Use uma imagem base do Java
 FROM openjdk:17-jdk-slim
 
-# Crie um diretório para o app
 WORKDIR /app
 
-# Copie o arquivo JAR para o container
 COPY nome-do-arquivo.jar app.jar
 
-# Expõe a porta usada pela aplicação
 EXPOSE 8080
 
-# Comando para rodar o JAR
 CMD ["java", "-jar", "app.jar"]
 
 # Desta forma conseguimos executar a criação da imagem de um container que irá executar o arquivo JAR
