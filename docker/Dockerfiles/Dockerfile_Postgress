@@ -1,15 +1,11 @@
-# Usando a imagem oficial do PostgreSQL
 FROM postgres:latest
 
-# Definindo variáveis de ambiente
 ENV POSTGRES_USER=meu_usuario
 ENV POSTGRES_PASSWORD=minha_senha
 ENV POSTGRES_DB=meu_banco_de_dados
 
-# Copiando scripts de inicialização
 COPY init.sql /docker-entrypoint-initdb.d/
 
-# Expondo a porta padrão do PostgreSQL
 EXPOSE 5432
 
 # Desta forma criamos uma imagem do postgree e usando um arquivo com script de construção separado inicializamos essa imagem
