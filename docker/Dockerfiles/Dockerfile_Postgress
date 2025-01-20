@@ -1,0 +1,18 @@
+# Usando a imagem oficial do PostgreSQL
+FROM postgres:latest
+
+# Definindo variáveis de ambiente
+ENV POSTGRES_USER=meu_usuario
+ENV POSTGRES_PASSWORD=minha_senha
+ENV POSTGRES_DB=meu_banco_de_dados
+
+# Copiando scripts de inicialização
+COPY init.sql /docker-entrypoint-initdb.d/
+
+# Expondo a porta padrão do PostgreSQL
+EXPOSE 5432
+
+# Desta forma criamos uma imagem do postgree e usando um arquivo com script de construção separado inicializamos essa imagem
+# já contendo nela todas as tabelas que vamos criar e caso precisamos, também podemos já inserir dados que vão ser úteis
+# Para testes durante a criação do nosso Banco de dados, dessa forma tendo uma forma de automatizar a criação do nosson Banco
+# de dados por completo, criando e modificando tabelas da forma que forem necessárias.
