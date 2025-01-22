@@ -1,6 +1,21 @@
 version: '3.0'
 
 services:
+  nginx-proxy:
+    image: nginx:latest
+    container_name: nginx-proxy
+    ports:
+      - "80:80" 
+    depends_on:
+      - frontend
+      - backend-login-service
+      - backend-gateway-service
+      - backend-crud-service
+      - backend-ia-service
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro 
+    restart: always
+
   frontend:
     image: mvittu/v8-rh/frontend-node
     ports:
