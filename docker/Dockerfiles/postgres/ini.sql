@@ -1,4 +1,4 @@
--- Criação do banco de dados.
+-- Criação do banco de dados
 CREATE DATABASE ProjetoV8;
 \c ProjetoV8
  
