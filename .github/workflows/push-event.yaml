@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Acionar repositório principal
+      # Envio do webhook para o repositório principal no repo PIPELINES
         run: |
           curl -X POST \
           -H "Accept: application/vnd.github.v3+json" \
