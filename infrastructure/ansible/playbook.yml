@@ -1,0 +1,43 @@
+- name: Deploy e orquestração
+  host: 
+  remote_user: opc
+  gather_facts: true
+
+  task:
+    - name: Atualizar pacotes no host remoto
+      apt: 
+        update_cache: yes
+        force_apt_get: yes
+    
+    - name: Instalar dependências para Docker e Nginx
+      apt:
+        name:
+          - docker.io
+          - Nginx
+        state: present
+
+    - name: Copiar arquivo docker 
+      copy:
+        src: ../../docker/docker-compose.yml
+        dest: /home/opc/docker-compose.yml
+        owner: opc
+        group: opc
+        mode: '6404'
+
+    - name: Copiar arquivo Nginx
+      copy: 
+        src: ../../nginx/nginx.conf
+        dest: /home/opc/docker-compose.yml
+        owner: opc
+        group: opc
+        mode: '0644'
+
+    - name: Reiniciar o serviço Nginx
+      service:
+        name: nginx
+        state: restarted
+
+    - name: Reiniciar  o serviço docker-compose
+      command: 
+        cmd: docker-compose up -d
+        chdir: /home/opc
