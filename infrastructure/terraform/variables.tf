@@ -40,6 +40,11 @@ variable "compartment_dev" {
   default     = ""
 }
 
+variable "compartment_monitoring" {
+  description = "OCID do compartimento de monitoramento"
+  type        = string
+  default     = ""
+}
 variable "ssh_keys" {
   description = "Chave pública SSH para acessar as instâncias"
   type        = string
@@ -51,3 +56,4 @@ variable "admin_password" {
   type        = string
   default     = ""
 }
+
